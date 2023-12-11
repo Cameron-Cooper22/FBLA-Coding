@@ -25,10 +25,12 @@ class SQL:
         """
         self.cursor.execute(f"INSERT INTO {self.main_table} ({name}, {phone_number}, {address})")    
         
-    def create_table(self, name: str, types: list, *params: str):
+    def create_table(self, name: str, types: list, *args: str):
         """
-        The list types must be same length as how many params there are.
-        \nFunction creates a new table, throws exception if table already made
+        Function creates a table or throws error if table with that name already exists
+        
+        params: name should be of new table, will print error message otherwise
+                types is a list that must have the same length as the amount of arguments in args.
         """
         
         types = [i.upper() for i in types]
@@ -44,7 +46,9 @@ class SQL:
     def array_to_text(self, arr: list) -> str:
         """
         Creates stringified array that is able to be stores as type text.
-        \nFormat is python string, [element0, element1...]
+        Format is python string, [element0, element1...]
+
+        params: arr is list containing values of any type.
         """
         s = "["
         for i in range(0, len(arr)):
@@ -54,8 +58,9 @@ class SQL:
     
     def text_to_array(self, s: str) -> list:
         """
-        Reformats string into array to read an arra ystored in database.
+        Reformats string into array to read an array stored in database.
         String given must not contain '[' or ']' as an element name, only as the beginning or end.
-        \nReturns an array.
+        
+        params: s: string to be read into an array.
         """
         return s.strip("[]").split(", ")
