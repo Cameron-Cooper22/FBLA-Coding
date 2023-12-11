@@ -1,13 +1,12 @@
 import sqlite3
-
-
-con = sqlite3.connect("fbla.db")
-cursor = con.cursor()
+from sql_functions import SQL
 
 # database format is name TEXT, phone_number TEXT, address TEXT
 
 # address format is Street Address, City, State Postal Code i.e.
 # 2800 NE Shoal Creek Pkwy, Kansas City, MO 64156
+
+sql = SQL("fbla.db", "organizations")
 with open('thing.sql', 'r') as sqlite_file:
         sql_script = sqlite_file.read()
 
