@@ -3,9 +3,9 @@ import os
 
 class SQL:
     def __init__(self, database: str, main_table: str) -> None:
-        self.database = database
-        con         =   sqlite3.connect(database)
-        self.cursor = con.cursor()
+        self.database   = database
+        con             = sqlite3.connect(database)
+        self.cursor     = con.cursor()
         self.main_table = main_table
         if not os.path.exists(database):
             self.cursor.execute(f"CREATE TABLE {self.main_table} (name TEXT, phone_number TEXT, address TEXT)")
@@ -18,7 +18,7 @@ class SQL:
         """
         return self.cursor.execute(f"SELECT {statement} FROM {self.main_table}").fetchall()
     
-    def insert_org(self, name: str, phone_number: str, address: str):
+    def insert(self, name: str, phone_number: str, address: str, main_stable):
         """
         Parameters are self explanatory
         Function inserts a new organization to table_name, defaulting to organizations
@@ -42,6 +42,18 @@ class SQL:
             self.cursor.execute(table)
         except:
             print("Table with that name already created or params is of different length than types list.")
+            
+    def create_database(self, name: str):
+        """
+        Function creates new database with titled name. Mostly useless in terms of FBLA project as fbla.db is already made.
+        
+        params: name is the title of database
+        """
+        try:
+            self.cursor.execute(f"CREATE DATABASE {name}")
+            
+        except:
+            pass
     
     def array_to_text(self, arr: list) -> str:
         """
@@ -64,3 +76,21 @@ class SQL:
         params: s: string to be read into an array.
         """
         return s.strip("[]").split(", ")
+
+    def execute_script(self, script_name: str):
+        """
+        Executes .sql file script.
+        
+        params: script_name is the file name that contains script. 
+        """
+        with open(script_name, 'r') as script_file:
+            read_file = script_file.read()
+        
+        self.cursor.executescript(read_file)
+
+    def update(self, value, *keys: str, table="organizations", where=False):
+        """
+        INCOMPLETE
+        Updates values in table.
+        """
+        self.cursor.execute(f"UPDATE {table} SET")
