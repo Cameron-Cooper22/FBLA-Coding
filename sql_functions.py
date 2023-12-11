@@ -27,8 +27,8 @@ class SQL:
         
     def create_table(self, name: str, types: list, *params: str):
         """
-        The list types must be same length as how many params there are
-        Function creates a new table, throws exception if table already made
+        The list types must be same length as how many params there are.
+        \nFunction creates a new table, throws exception if table already made
         """
         
         types = [i.upper() for i in types]
@@ -40,12 +40,22 @@ class SQL:
             self.cursor.execute(table)
         except:
             print("Table with that name already created or params is of different length than types list.")
-        
-
-        
-        
-            
-sql = SQL("fbla.db", "organizations")
-names = sql.select("name")
-
-print(names)
+    
+    def array_to_text(self, arr: list) -> str:
+        """
+        Creates stringified array that is able to be stores as type text.
+        \nFormat is python string, [element0, element1...]
+        """
+        s = "["
+        for i in range(0, len(arr)):
+            s += f"{arr[i]}, "
+        s += "]"
+        return s
+    
+    def text_to_array(self, s: str) -> list:
+        """
+        Reformats string into array to read an arra ystored in database.
+        String given must not contain '[' or ']' as an element name, only as the beginning or end.
+        \nReturns an array.
+        """
+        return s.strip("[]").split(", ")
