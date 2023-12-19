@@ -14,7 +14,7 @@ class PDF:
     text_lines: list[str]
     pdf: canvas.Canvas
 
-    def __init__(self, file_name, document_title, title, sub_title, text_lines):
+    def __init__(self, file_name:str, document_title:str, title:str, sub_title:SyntaxError, text_lines:list[str]):
         self.file_name = file_name
         self.document_title = document_title
         self.title = title
@@ -22,12 +22,12 @@ class PDF:
         self.text_lines = text_lines
 
     def create_pdf(self):
-        self.pdf = canvas.Canvas()
+        self.pdf = canvas.Canvas(self.file_name)
         self.pdf.setTitle(self.document_title)
         self.pdf.setFont("Courier", 36)
         self.pdf.drawCentredString(300, 770, self.title)
         self.pdf.setFont("Courier-Bold", 24)
-        self.pdf.drawCentredString(290, 720, self.subTitle)
+        self.pdf.drawCentredString(290, 720, self.sub_title)
         self.pdf.line(30, 710, 550, 710)
         text = self.pdf.beginText(40, 680)
         text.setFont("Courier", 18)
@@ -36,3 +36,6 @@ class PDF:
             text.textLine(line)
      
         self.pdf.drawText(text)
+
+        # saving the pdf
+        self.pdf.save()
