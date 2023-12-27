@@ -1,0 +1,9 @@
+Hey, guys. Next time you open the project, you should use the virtual environment installed to it.
+
+Each time you open the terminal, run the following command
+The following command:        source venv/bin/activate
+
+It will activate the virtual environment.
+This is with also using the virtual environment as the interpreter.
+
+I did this so I could use Django fully as the backend, and frontend too, for the website that will run the database.
