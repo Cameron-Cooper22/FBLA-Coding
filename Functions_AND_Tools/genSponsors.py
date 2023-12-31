@@ -17,4 +17,53 @@ takennumbers = []
 
 #     out.append(name, number, address)
 
-print(ra.real_random_address())
+def to_state(var):
+    if var == 'CO':
+        return 'Colorado'
+    if var == 'CT':
+        return 'Connecticut'
+    if var == 'MA':
+        return 'Maine'
+    if var == 'MD':
+        return 'Maryland'
+    if var == 'FL':
+        return 'Florida'
+    if var == 'VT':
+        return 'Vermont'
+    if var == 'CA':
+        return 'California'
+    if var == 'GA':
+        return 'Georgia'
+    if var == 'AL':
+        return 'Alabama'
+    if var == 'KY':
+        return 'Kentucky'
+    if var == 'TN':
+        return 'Tennessee'
+    if var == 'OK':
+        return 'Oklahoma'
+    if var == 'AR':
+        return 'Arkansas'
+    if var == 'AZ':
+        return 'Arizona'
+    if var == 'AK':
+        return 'Alaska'
+    return var
+
+def gimme_addr():
+    addr = ra.real_random_address()
+    addr = dict(addr)
+    while (addr.get('address2') != '') or (addr.get('state') == ''):
+        addr = ra.real_random_address()
+    out = (
+        str(addr.get('address1')) +
+        ', ' +
+        str(addr.get('city')) +
+        ', ' +
+        str(to_state(addr.get('state'))) +
+        ' ' +
+        str(addr.get('postalCode'))
+    )
+    return out
+while True:
+    print(gimme_addr())
