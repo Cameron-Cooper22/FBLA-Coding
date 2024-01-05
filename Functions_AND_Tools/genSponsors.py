@@ -3,19 +3,9 @@ import random_address as ra
 
 names = ['Joe', 'Sean', 'Shawn', 'Frank', 'Ann', 'John', 'Carlyle', 'Harrison', 'Henderson', 'Mary', 'Amy', 'Hudson', 'Jackson', 'Avery', 'Jordan', 'Grace', 'Gray']
 occupations = ['Pharmacy', 'Auto Repair', 'Tow Services', 'Grocery', 'Cleaning', 'Tech Repair', 'Construction', 'Real Estate', 'Transportation', 'Cab Service', 'Retail', 'Gym', 'Financial Services', 'Manufacturing']
-out = list[(str,str,str)]
+out = [(str, int, str, str)]
 takennumbers = []
-# for x in names:
-#     name = str(x+"'s "+rand.choice(occupations))
-
-#     number = str('816'+str(rand.randint(100_000, 999_999)))
-#     while number in takennumbers:
-#         number = str('816'+rand.randint(100_000, 999_999))
-#     takennumbers.append(number)
-
-#     address = ra.real_random_address_by_state('MO')
-
-#     out.append(name, number, address)
+bval = False
 
 def to_state(var):
     if var == 'CO':
@@ -65,5 +55,28 @@ def gimme_addr():
         str(addr.get('postalCode'))
     )
     return out
-while True:
-    print(gimme_addr())
+
+for x in names:
+    if bval:
+        break
+    for y in occupations:
+        if bval:
+            break
+        name = str(x + "'s " + str(y))
+
+        number = (816_000_0000) + (rand.randint(0, 999_9999))
+        while number in takennumbers:
+            number = (816_000_000 + (rand.randint(1, 999_999)))
+        takennumbers.append(number)
+
+        address = gimme_addr()
+
+        category = y
+
+        out.append((name, number, address, category))
+        if len(out) >= 200:
+            bval = True
+            break
+for z in out:
+    print(z[1])
+    

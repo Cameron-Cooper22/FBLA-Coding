@@ -6,4 +6,4 @@ The following command:        source venv/bin/activate
 It will activate the virtual environment.
 This is with also using the virtual environment as the interpreter.
 
-I did this so I could use Django fully as the backend, and frontend too, for the website that will run the database.
+I did this so I could use Django fully as the backend and frontend for the website that will run the database.
