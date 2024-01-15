@@ -1,11 +1,12 @@
 import random as rand
 import random_address as ra
 
-names = ['Joe', 'Sean', 'Shawn', 'Frank', 'Ann', 'John', 'Carlyle', 'Harrison', 'Henderson', 'Mary', 'Amy', 'Hudson', 'Jackson', 'Avery', 'Jordan', 'Grace', 'Gray']
+names = ['Joe', 'Sean', 'Shawn', 'Frank', 'Ann', 'John', 'Carlyle', 'Harrison', 'Henderson', 'Mary', 'Amy', 'Hudson', 'Jackson', 'Avery', 'Jordan', 'Grace', 'Gray', 'Mickey', 'Rocky', 'Adrian', 'Adonous', 'Creed']
 occupations = ['Pharmacy', 'Auto Repair', 'Tow Services', 'Grocery', 'Cleaning', 'Tech Repair', 'Construction', 'Real Estate', 'Transportation', 'Cab Service', 'Retail', 'Gym', 'Financial Services', 'Manufacturing']
 out = [(str, int, str, str)]
 takennumbers = []
 bval = False
+zippies = [64079, 64163, 64164, 64165, 64166, 64167, 64153, 64154, 64155, 64156, 64157, 64158, 64152, 64151, 64118, 64119, 66104, 66115, 64116, 64117]
 
 def to_state(var):
     if var == 'CO':
@@ -48,11 +49,11 @@ def gimme_addr():
     out = (
         str(addr.get('address1')) +
         ', ' +
-        str(addr.get('city')) +
+        "Kansas City" +
         ', ' +
-        str(to_state(addr.get('state'))) +
+        "MO" +
         ' ' +
-        str(addr.get('postalCode'))
+        str(rand.choice(zippies))
     )
     return out
 
@@ -74,9 +75,25 @@ for x in names:
         category = y
 
         out.append((name, number, address, category))
-        if len(out) >= 200:
+        if len(out) >= 300:
             bval = True
             break
-for z in out:
-    print(z[1])
-    
+
+out = out[1:]
+rand.shuffle(out)
+
+for z in range(299):
+    memberList = []
+    memberList.append("sponsor" + str(z+1))
+    print(
+        "sponsor" + str(z+1) + " = Sponsor(" +
+            'name="' + str(out[z][0]) + '", ' +
+            "phonenumber=" + str(out[z][1]) + ", " +
+            "address='" + str(out[z][2]) + "', " +
+            "category='" + str(out[z][3]) + "')"
+    )
+h = ""
+for x in range(299):
+    h += "sponsor" + str(x+1) + ", "
+h = h[:-2]
+print("sponsors_list = [" + h + "]")

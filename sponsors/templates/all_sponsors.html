@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Sponsors</h1>
+  
+<ul>
+  {% for x in mysponsors %}
+    <li><a href="details/{{ x.id }}">{{ x.name }}</a></li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>
