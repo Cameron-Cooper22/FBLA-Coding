@@ -1,0 +1,45 @@
+<title>Search</title>
+<h1>Search</h1>
+
+<h3>Specific Term:</h3>
+<form action="{% url 'search_results' %}" method="get">
+    <input name="q" type="text" placeholder="Search...">
+</form>
+
+
+
+
+<h3>By Data Type:</h3>
+
+<form method="get">
+    <input type="hidden" name="q" value="{{ query }}">
+    <label>
+        <input type="radio" name="sort" value="name" onchange="this.form.submit()" {% if request.GET.sort == "name" %} checked {% endif %}>
+        Name
+    </label>
+    <label>
+        <input type="radio" name="sort" value="address" onchange="this.form.submit()" {% if request.GET.sort == "address" %} checked {% endif %}>
+        Address
+    </label>
+    <label>
+        <input type="radio" name="sort" value="phonenumber" onchange="this.form.submit()" {% if request.GET.sort == "phonenumber" %} checked {% endif %}>
+        Phone Number
+    </label>
+    <label>
+        <input type="radio" name="sort" value="category" onchange="this.form.submit()" {% if request.GET.sort == "category" %} checked {% endif %}>
+        Category
+    </label>
+</form>
+
+<ul>
+  {% for sponsor in object_list %}
+    <li>
+    <strong>{{ sponsor.name }}</strong>
+      <ul>
+      <li>{{ sponsor.address }}</li>
+      <li>{{ sponsor.category }}</li>
+      <li>{{ sponsor.phonenumber }}</li>
+    </ul>
+    </li>
+  {% endfor %}
+</ul>

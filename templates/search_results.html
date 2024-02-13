@@ -1,0 +1,16 @@
+<h1>Search Results</h1>
+<h3>
+    For the Query of 
+    <span style="color: rgb(150, 0, 0);"> 
+         "{{ query }}"
+    </span>
+</h3>
+
+<h3>Go back to <a href="/">Search</a></h3>
+<ul>
+  {% for sponsor in object_list %}
+    <li>
+        <a href="/search/{{ sponsor.id }}">{{ sponsor.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
